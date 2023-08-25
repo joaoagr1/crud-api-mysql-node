@@ -15,7 +15,7 @@ async function fetchData() {
           <td>${item.id}</td>
             <td>${item.nome}</td> <!-- Insere o nome do item na célula da tabela -->
             <td> ${item.email}</td> <!-- Insere o email do item na célula da tabela -->
-            <td class=""> <button class="btn-excluir btn btn-danger" type="button">Excluir</button></td> <!-- Insere o email do item na célula da tabela -->
+            <td class=""> <button class="btn-excluir btn-danger" type="button">Excluir</button></td> <!-- Insere o email do item na célula da tabela -->
           </tr>
         `;
       });
