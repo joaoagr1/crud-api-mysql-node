@@ -1,0 +1,5 @@
+table-flow {
+    max-height: 30px; /* Defina a altura máxima desejada */
+    overflow-y:scroll ;
+
+  }
