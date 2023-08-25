@@ -15,7 +15,7 @@ async function fetchData() {
           <td>${item.id}</td>
             <td>${item.nome}</td> <!-- Insere o nome do item na célula da tabela -->
             <td> ${item.email}</td> <!-- Insere o email do item na célula da tabela -->
-            <td class=""> <button class="btn-excluir btn" type="button">Excluir</button></td> <!-- Insere o email do item na célula da tabela -->
+            <td class="btn-excluir"> <button class="btn-excluir btn" type="button">Excluir</button></td> <!-- Insere o email do item na célula da tabela -->
           </tr>
         `;
       });
@@ -60,7 +60,9 @@ tabela.addEventListener("click", function(event) {
   
 
 
-        
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("DELETE",`http://localhost:3000/pessoas/${id}`)
+        xmlhttp.send()
 
     }
   })

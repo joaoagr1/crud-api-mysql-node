@@ -15,7 +15,7 @@ async function fetchData() {
           <td>${item.id}</td>
             <td>${item.nome}</td> <!-- Insere o nome do item na célula da tabela -->
             <td> ${item.email}</td> <!-- Insere o email do item na célula da tabela -->
-            <td class=""> <button class="btn-excluir btn" type="button">Excluir</button></td> <!-- Insere o email do item na célula da tabela -->
+            <td class="btn-excluir"> <button class="btn-excluir btn" type="button">Excluir</button></td> <!-- Insere o email do item na célula da tabela -->
           </tr>
         `;
       });
@@ -41,26 +41,24 @@ tabela.addEventListener("click", function(event) {
   var elementoClicado = event.target;
 
   if (elementoClicado.classList.contains("btn-excluir")) {
-    var linha = elementoClicado.closest("tr");
+    var linha = elementoClicado.closest("tr"); // Encontra a linha (TR) que contém o botão clicado
 
     var celulaId = linha.querySelector("td");
     var id = celulaId.textContent;
 
-    linha.classList.add("fadeOut");
+    linha.classList.add("fadeOut"); // Adiciona a classe para animação de saída
     setTimeout(function() {
-      linha.remove();
+      linha.remove(); // Remove a linha após a animação
 
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.open("DELETE", `http://localhost:3000/pessoas/${id}`);
       xmlhttp.send();
-    }, 350);
-  } else if (!elementoClicado.closest("tr").classList.contains("btn-excluir")) {
-    // Caso a célula da tabela seja clicada, mas não seja o botão de exclusão
-    console.log("Célula clicada, mas não é o botão de exclusão.");
+    }, 350); // Tempo para a animação antes de remover a linha
   
 
-
-        
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("DELETE",`http://localhost:3000/pessoas/${id}`)
+        xmlhttp.send()
 
     }
   })

@@ -1,0 +1,12 @@
+.table-flow {
+    max-height: 400px; /* Defina a altura máxima desejada */
+    overflow-y:scroll ;
+
+  }
+
+  .center-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centraliza verticalmente na altura da viewport */
+  }

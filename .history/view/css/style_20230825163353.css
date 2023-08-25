@@ -10,9 +10,3 @@
   left: 50%;
   transform: translate(-50%, -50%);
   }
-
-
-  .fadeOut{
-	opacity: 0;
-	transition: 0.5s;
-}

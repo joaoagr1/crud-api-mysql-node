@@ -15,7 +15,7 @@ async function fetchData() {
           <td>${item.id}</td>
             <td>${item.nome}</td> <!-- Insere o nome do item na célula da tabela -->
             <td> ${item.email}</td> <!-- Insere o email do item na célula da tabela -->
-            <td class=""> <button class="btn-excluir btn" type="button">Excluir</button></td> <!-- Insere o email do item na célula da tabela -->
+            <td class="btn-excluir"> <button class="btn-excluir1 btn" type="button">Excluir</button></td> <!-- Insere o email do item na célula da tabela -->
           </tr>
         `;
       });
@@ -36,31 +36,28 @@ async function fetchData() {
   
 
   var tabela = document.querySelector("#tabela-principal");
+  tabela.addEventListener("click", function(event){
+    var elementoClicado = event.target;
+    if(elementoClicado.classList.contains("btn-excluir1")){
+        var celula = elementoClicado.parentNode;
+        //var linha = celula.parentNode;
 
-tabela.addEventListener("click", function(event) {
-  var elementoClicado = event.target;
+        var celulaId = celula.querySelector("td")
+        var id = celulaId.textContent;
+        console.log(id)
 
-  if (elementoClicado.classList.contains("btn-excluir")) {
-    var linha = elementoClicado.closest("tr");
+        var alvoEvento = event.target; //event.target seleciona o alvo afetado. enquanto que o this é o dono do evento.
+        //como eu nao quero excluir o td e sim o tr eu chamo o pai do td com a função parentNode, jogo ela numa variavel e apago ela com . remove();
+        var paiDoAlvo = alvoEvento.parentNode; 
+        paiDoAlvo.classList.add("fadeOut"); //colocou a classe nele que vai ter essa transição ao remover
+        setTimeout(function(){ //coloca um tempo antes de realizar a ação de remover 
+            paiDoAlvo.remove();// para dar tempo da transição rodar
 
-    var celulaId = linha.querySelector("td");
-    var id = celulaId.textContent;
+        },350);
 
-    linha.classList.add("fadeOut");
-    setTimeout(function() {
-      linha.remove();
-
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("DELETE", `http://localhost:3000/pessoas/${id}`);
-      xmlhttp.send();
-    }, 350);
-  } else if (!elementoClicado.closest("tr").classList.contains("btn-excluir")) {
-    // Caso a célula da tabela seja clicada, mas não seja o botão de exclusão
-    console.log("Célula clicada, mas não é o botão de exclusão.");
-  
-
-
-        
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("DELETE",`http://localhost:3000/pessoas/${id}`)
+        xmlhttp.send()
 
     }
   })

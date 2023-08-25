@@ -60,7 +60,9 @@ tabela.addEventListener("click", function(event) {
   
 
 
-        
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("DELETE",`http://localhost:3000/pessoas/${id}`)
+        xmlhttp.send()
 
     }
   })
